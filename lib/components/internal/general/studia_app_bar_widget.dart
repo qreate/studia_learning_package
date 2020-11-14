@@ -15,7 +15,7 @@ class StudiaAppBar extends AppBar {
 
   @override
   Widget get title => StudiaText(
-        size: 44,
+        size: 34,
         alignment: Alignment.bottomCenter,
         text: textTitle,
       );

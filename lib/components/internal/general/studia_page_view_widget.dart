@@ -5,8 +5,12 @@ import 'package:studia_learning_package/data/constants/studia_colors.dart';
 
 class StudiaPagerImageView extends StatefulWidget {
   final List<String> images;
+  final bool finished;
 
-  const StudiaPagerImageView({@required this.images});
+  const StudiaPagerImageView({
+    @required this.images,
+    this.finished = false,
+  });
 
   @override
   _StudiaPagerImageViewState createState() => _StudiaPagerImageViewState();
@@ -54,32 +58,40 @@ class _StudiaPagerImageViewState extends State<StudiaPagerImageView> {
             controller: _pageController,
           ),
         ),
-        Container(
-          width: deviceWidth,
-          height: 14,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ListView(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  for (int i = 0; i < widget.images.length; i++)
-                    if (i == currentPageValue) ...[
-                      StudiaCircleDotWidget(
-                        isActive: true,
-                        color: Colors.white,
-                        borderColor: Colors.white,
-                      )
-                    ] else
-                      StudiaCircleDotWidget(
-                        isActive: false,
-                        color: StudiaColors.flamingo,
-                        borderColor: StudiaColors.wood_smoke,
-                      ),
+        Visibility(
+          visible: !widget.finished,
+          child: Padding(
+            padding: EdgeInsets.all(
+              8.0,
+            ),
+            child: Container(
+              width: deviceWidth,
+              height: !widget.finished ? 14 : 0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ListView(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    children: <Widget>[
+                      for (int i = 0; i < widget.images.length; i++)
+                        if (i == currentPageValue) ...[
+                          StudiaCircleDotWidget(
+                            isActive: true,
+                            color: Colors.white,
+                            borderColor: Colors.white,
+                          )
+                        ] else
+                          StudiaCircleDotWidget(
+                            isActive: false,
+                            color: StudiaColors.flamingo,
+                            borderColor: StudiaColors.wood_smoke,
+                          ),
+                    ],
+                  ),
                 ],
               ),
-            ],
+            ),
           ),
         ),
       ],
