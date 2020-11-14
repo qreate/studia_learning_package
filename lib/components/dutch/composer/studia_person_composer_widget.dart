@@ -5,25 +5,26 @@ class StudiaPersoonSamensteller extends StatelessWidget {
   final StudiaHoofdComponent hoofd;
   //
   final Widget torso;
-  final Widget benen;
-  final Widget gezicht;
+  // final Widget _benen;
 
   const StudiaPersoonSamensteller({
     Key key,
     @required this.hoofd,
     @required this.torso,
-    @required this.benen,
-    @required this.gezicht,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        hoofd,
-        // gezicht,
-        // benen,
-        // gezicht,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: hoofd,
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: torso,
+        ),
       ],
     );
   }
