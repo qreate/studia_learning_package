@@ -42,9 +42,8 @@ class _StudiaPagerImageViewState extends State<StudiaPagerImageView> {
           child: PageView.builder(
             physics: ClampingScrollPhysics(),
             itemBuilder: (context, index) {
-              return Image.asset(
+              return Image.network(
                 widget.images[index],
-                package: 'studia_learning_package',
                 height: 200,
               );
             },

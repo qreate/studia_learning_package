@@ -1,7 +1,8 @@
 part of 'studia_body_parts.dart';
 
 mixin StudiaHeadParts {
-  static const prefixPath = 'assets/images/person/head';
+  static const prefixPath =
+      'https://storage.googleapis.com/studia-qreate.appspot.com/packages/studia_learning_package/assets/images/person/head';
   static const all = [
     '$prefixPath/Afro.png',
     '$prefixPath/Bangs 2.png',

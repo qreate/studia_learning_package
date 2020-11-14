@@ -1,7 +1,8 @@
 part of 'studia_body_parts.dart';
 
 mixin StudiaTorsoParts {
-  static const prefixPath = 'assets/images/person/torso';
+  static const prefixPath =
+      'https://storage.googleapis.com/studia-qreate.appspot.com/packages/studia_learning_package/assets/images/person/torso';
   static const all = [
     '$prefixPath/Blazer Black Tee.png',
     '$prefixPath/Button Shirt 1.png',
