@@ -7,18 +7,21 @@ class StudiaPersoonSamensteller extends StatefulWidget {
   final StudiaTorsoComponent torso;
   //
   final StudiaKlaarKnop klaarKnop;
+  //
+  final bool metConfetti;
 
   const StudiaPersoonSamensteller({
     Key key,
     @required this.hoofd,
     @required this.torso,
     @required this.klaarKnop,
+    this.metConfetti = false,
   }) : super(key: key);
   // final Widget _benen;
   @override
   _StudiaPersoonSamenstellerState createState() =>
       _StudiaPersoonSamenstellerState(
-        hoofd: this.hoofd,
+        head: this.hoofd,
         torso: this.torso,
         klaarKnop: this.klaarKnop,
       );
@@ -26,23 +29,34 @@ class StudiaPersoonSamensteller extends StatefulWidget {
 
 class _StudiaPersoonSamenstellerState extends State<StudiaPersoonSamensteller> {
   //
-  final StudiaHoofdComponent hoofd;
+  final StudiaHoofdComponent head;
   //
   final StudiaTorsoComponent torso;
   //
   final StudiaKlaarKnop klaarKnop;
+
   // final Widget _benen;
   bool isFinished = false;
+  ConfettiController _controller;
 
   _StudiaPersoonSamenstellerState({
-    @required this.hoofd,
+    @required this.head,
     @required this.torso,
     @required this.klaarKnop,
   });
 
   @override
   void initState() {
+    _controller = ConfettiController(
+      duration: const Duration(seconds: 10),
+    );
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   void finished({
@@ -51,17 +65,27 @@ class _StudiaPersoonSamenstellerState extends State<StudiaPersoonSamensteller> {
     setState(() {
       isFinished = finished;
     });
+    if (widget.metConfetti) {
+      if (finished) {
+        _controller.play();
+      } else {
+        _controller.stop();
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        StudiaConfettiWrapper(
+          confettiController: _controller,
+        ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: hoofd != null
+          child: head != null
               ? StudiaHoofdComponent(
-                  gezichtFotoLink: hoofd.gezichtFotoLink,
+                  gezichtFotoLink: head.gezichtFotoLink,
                   finished: isFinished,
                 )
               : null,
@@ -83,8 +107,15 @@ class _StudiaPersoonSamenstellerState extends State<StudiaPersoonSamensteller> {
               ? StudiaKlaarKnop(
                   tekst: klaarKnop.tekst,
                   wanneerKlaar: finished,
+                  finished: isFinished,
                 )
-              : null,
+              : klaarKnop != null && isFinished
+                  ? StudiaKlaarKnop(
+                      tekst: 'Terug',
+                      wanneerKlaar: finished,
+                      finished: isFinished,
+                    )
+                  : null,
         ),
       ],
     );

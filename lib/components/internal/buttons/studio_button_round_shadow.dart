@@ -25,10 +25,10 @@ class StudiaButtonPlainWithShadow extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: callback,
+      behavior: HitTestBehavior.opaque,
       child: Container(
-        width: size != null ? size : MediaQuery.of(context).size.width,
-        height: height != null ? height : 48,
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        width: size != null ? size : MediaQuery.of(context).size.width * 0.7,
+        height: height != null ? height : 58,
         child: Center(
           child: Text(
             text,

@@ -14,9 +14,14 @@ class StudiaAppBar extends AppBar {
   double get elevation => 0.0;
 
   @override
-  Widget get title => StudiaText(
-        size: 34,
-        alignment: Alignment.bottomCenter,
-        text: textTitle,
+  Widget get title => Container(
+        padding: EdgeInsets.symmetric(
+          vertical: 16.0,
+        ),
+        child: StudiaText(
+          size: 34,
+          alignment: Alignment.bottomCenter,
+          text: textTitle,
+        ),
       );
 }

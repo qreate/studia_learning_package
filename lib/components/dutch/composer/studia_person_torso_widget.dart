@@ -16,7 +16,7 @@ class StudiaTorsoComponent extends StatelessWidget {
           Transform.translate(
             offset: Offset(
               0,
-              !finished ? 0 : -35,
+              !finished ? 0 : -45,
             ),
             child: StudiaPagerImageView(
               images: StudiaBodyParts.torsos,
